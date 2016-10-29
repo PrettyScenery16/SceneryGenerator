@@ -7,120 +7,187 @@ class Scenery(Turtle):
         self.ts = self.getscreen()
         self.speed(0)
         self.ht()
-##
-##        self.place = self.ts.numinput('Place', '''What place do you want? Your options are:
-##            → island = 1
-##            → valley = 2
-##            → hills = 3
-##            → city = 4
-##            → random = 5''', minval = 1, maxval = 5)
-##
-##        self.time = self.ts.numinput('Time of Day', '''What time of day do you want? Your options are:
-##            → morning = 1
-##            → midday = 2
-##            → evening = 3
-##            → random = 4''', minval = 1, maxval = 4)
-##
-##        self.weather = self.ts.numinput('Weather', '''What weather do you want? Your options are:
-##            → rainy = 1
-##            → sunny = 2
-##            → foggy = 3
-##            → snowy = 4
-##            → random = 5''', minval = 1, maxval = 5)
-##
-##        if self.place == 5:
-##            self.place = random.randint(1, 4)
-##        if self.place == 1:
-##            self.island()
-##        elif self.place == 2:
-##            self.valley()
-##        elif self.place == 3:
-##            self.hills()
-##        elif self.place == 4:
-##            self.city()
-##
-##    def island(self):
-##        if self.time == 4:
-##            self.time = random.randint(1, 3)
-##        if self.time == 1:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##        elif self.time == 2:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##        elif self.time == 3:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##
-##    def valley(self):
-##        if self.time == 4:
-##            self.time = random.randint(1, 3)
-##        if self.time == 1:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##        elif self.time == 2:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##        elif self.time == 3:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##
-##    def hills(self):
-##        if self.time == 4:
-##            self.time = random.randint(1, 3)
-##        if self.time == 1:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##        elif self.time == 2:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##        elif self.time == 3:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##
-##    def city(self):
-##        if self.time == 4:
-##            self.time = random.randint(1, 3)
-##        if self.time == 1:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##        elif self.time == 2:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##        elif self.time == 3:
-##            self.makeBg("stuff") # TODO
-##            self.makeMg("stuff") # TODO
-##            self.makeFg("stuff") # TODO
-##
-    def makeBg(self, color, birds, sunpos, suncolor, clouds, mountains, stars):
-        
+
+        self.place = self.ts.numinput('Place', '''What place do you want? Your options are:
+            → island = 1
+            → valley = 2
+            → hills = 3
+            → city = 4
+            → random = 5''', minval = 1, maxval = 5)
+
+        self.time = self.ts.numinput('Time of Day', '''What time of day do you want? Your options are:
+            → morning = 1
+            → midday = 2
+            → evening = 3
+            → random = 4''', minval = 1, maxval = 4)
+
+        self.weather = self.ts.numinput('Weather', '''What weather do you want? Your options are:
+            → rainy = 1
+            → sunny = 2
+            → foggy = 3
+            → snowy = 4
+            → random = 5''', minval = 1, maxval = 5)
+
+        if self.weather == 5:
+            self.weather = random.randint(1, 4)
+
+        if self.time == 4:
+            self.time = random.randint(1, 3)
+
+        if self.place == 5:
+            self.place = random.randint(1, 4)
+
+        if self.place == 1:
+            self.island()
+        elif self.place == 2:
+            self.valley()
+        elif self.place == 3:
+            self.hills()
+        elif self.place == 4:
+            self.city()
+
+    def island(self): # TODO
+        if self.time == 1:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+        elif self.time == 2:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+            elif self.time == 3:
+                pass
+        elif self.time == 3:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+
+    def valley(self): # TODO
+        if self.time == 1:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+        elif self.time == 2:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+            elif self.time == 3:
+                pass
+        elif self.time == 3:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+
+    def hills(self): # TODO
+        if self.time == 1:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+        elif self.time == 2:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+            elif self.time == 3:
+                pass
+        elif self.time == 3:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+
+    def city(self): # TODO
+        if self.time == 1:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+        elif self.time == 2:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+            elif self.time == 3:
+                pass
+        elif self.time == 3:
+            if self.weather == 1:
+                pass
+            elif self.weather == 2:
+                pass
+            elif self.weather == 3:
+                pass
+            elif self.weather == 4:
+                pass
+
+    def makeBg(self, color, birds, sunpos, suncolor, clouds, cloudcolor, mountains, stars, starcolor):
+
         self.ts.bgcolor(color)
-        
+
         if stars:
-            self.stars(30, "yellow")
-            
+            self.stars(30, starcolor)
+
         if sunpos == 1:
             self.sun(suncolor)
         elif sunpos == 2:
             self.sun(suncolor)
-            
+
         if mountains:
             self.mountains(20, 100, 200, -50)
-            
+
         if clouds:
-            self.clouds("black", 10, 50, 100)
-            
+            self.clouds(cloudcolor, 10, 50, 100)
+
         if birds == 1:
             self.birds(10)
         elif birds == 2:
@@ -129,13 +196,13 @@ class Scenery(Turtle):
             self.birds(50)
 
 
-##
-##
-##    def makeMg(self, stuff): #TODO
-##        pass # TODO
-##
-##    def makeFg(self, trees, stuff): #TODO
-##        pass #TODO
+
+
+    def makeMg(self, stuff): # TODO
+        pass
+
+    def makeFg(self, trees, stuff): # TODO
+        pass
 
     def birds(self, num):
         self.color("black")
@@ -190,5 +257,5 @@ class Scenery(Turtle):
             self.dot(random.randint(2, 10))
 
 s = Scenery()
-s.makeBg("#00FFFF", 2, 2, "#FFFF00", True, False, True)
+s.makeBg("#000000", 2, 2, "#000000", False, "#000000", False, True, "#fff5ec")
 
