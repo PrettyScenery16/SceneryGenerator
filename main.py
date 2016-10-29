@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import math
 import random
 from turtle import *
 
@@ -308,7 +309,7 @@ class Scenery(Turtle):
 
     @staticmethod
     def parabola_point(a, b, c, x):
-        return math.ceil(a*x**2 + b*x + c)
+        return math.ceil(a * c ** 2 + b * x + c)
 
     def trees_on_hill(self, num, a, b, c, color):
         self.color(color)
