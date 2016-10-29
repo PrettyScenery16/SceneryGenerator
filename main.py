@@ -103,30 +103,32 @@ class Scenery(Turtle):
 ##            self.makeMg("stuff") # TODO
 ##            self.makeFg("stuff") # TODO
 ##
-##    def makeBg(self, color, birds, sunpos, suncolor, clouds, mountains, stars):
-##        
-##        self.ts.bgcolor(color)
-##        
-##        if self.sunpos == 1:
-##            self.sun(blah, suncolor)
-##        elif sunpos == 2:
-##            self.sun(blah, suncolor)
-##            
-##        if mountains:
-##            self.mountains(blah)
-##            
-##        if clouds:
-##            self.clouds(blah)
-##            
-##        if birds == 1:
-##            self.birds("stuff") # TODO
-##        elif birds == 2:
-##            self.birds("stuff") #TODO
-##        elif birds == 3:
-##            self.birds("stuff") # TODO
-##
-##        if stars:
-##            self.stars(blah)
+    def makeBg(self, color, birds, sunpos, suncolor, clouds, mountains, stars):
+        
+        self.ts.bgcolor(color)
+        
+        if stars:
+            self.stars(30, "yellow")
+            
+        if sunpos == 1:
+            self.sun(suncolor)
+        elif sunpos == 2:
+            self.sun(suncolor)
+            
+        if mountains:
+            self.mountains(20, 100, 200, -50)
+            
+        if clouds:
+            self.clouds("black", 10, 50, 100)
+            
+        if birds == 1:
+            self.birds(10)
+        elif birds == 2:
+            self.birds(20)
+        elif birds == 3:
+            self.birds(50)
+
+
 ##
 ##
 ##    def makeMg(self, stuff): #TODO
@@ -135,10 +137,11 @@ class Scenery(Turtle):
 ##    def makeFg(self, trees, stuff): #TODO
 ##        pass #TODO
 
-    def birds(self, num): # Working!!!
+    def birds(self, num):
+        self.color("black")
         for i in range(num):
             self.up()
-            self.goto(random.randint(-self.ts.window_width()//2, self.ts.window_height()//2), random.randint(-self.ts.window_height()//2, self.ts.window_height()//2))
+            self.goto(random.randint(-self.ts.window_width()//2, self.ts.window_height()//2), random.randint(0, self.ts.window_height()//2))
             self.down()
             for i in range(4):
                 self.fd(10)
@@ -151,6 +154,7 @@ class Scenery(Turtle):
         self.down
 
     def clouds(self, color, num, sizemin, sizemax):
+        self.color(color)
         if sizemin>20:
             for i in range(num):
                 x = random.randint(sizemin, sizemax)
@@ -164,16 +168,27 @@ class Scenery(Turtle):
                     self.fd(y)
                     self.lt(90)
 
-    def mountains(self, color):
-        pass #TODO
+    def mountains(self, num, sizemin, sizemax, y):
+        self.color("black")
+        for i in range(num):
+            x = random.randint(sizemin, sizemax)
+            self.up()
+            self.goto(random.randint(-self.ts.window_height()//2, (self.ts.window_height())//2), y) #WIP
+            self.down()
+            self.lt(75)
+            for i in range(2):
+                self.fd(x)
+                self.rt(150)
+            self.rt(135)
 
-    def stars(self, num, color): # Working!!!
+    def stars(self, num, color):
         self.color(color)
         for i in range(num):
             self.up()
             self.goto(random.randint(-self.ts.window_width()//2, self.ts.window_height()//2), random.randint(-self.ts.window_height()//2, self.ts.window_height()//2))
             self.down()
-            self.dot(10)
+            self.dot(random.randint(2, 10))
 
 s = Scenery()
-s.clouds("black", 20, 30, 50)
+s.makeBg("#00FFFF", 2, 2, "#FFFF00", True, False, True)
+
