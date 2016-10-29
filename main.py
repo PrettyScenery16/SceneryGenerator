@@ -1,5 +1,6 @@
 from turtle import *
 import random
+import math
 
 class Scenery(Turtle):
     def __init__(self):
@@ -198,11 +199,13 @@ class Scenery(Turtle):
 
 
 
-    def makeMg(self, stuff): # TODO
-        pass
+    def makeMg(self, trees, a, b,c ):
+        self.hillCurve("#000000", a, b, c, 2)
+        self.trees(trees)
 
-    def makeFg(self, trees, stuff): # TODO
-        pass
+    def makeFg(self, trees, a, b,c ):
+        self.hillCurve("#000000", a, b, c, 2)
+        self.trees(trees)
 
     def birds(self, num):
         self.color("black")
@@ -256,6 +259,29 @@ class Scenery(Turtle):
             self.down()
             self.dot(random.randint(2, 10))
 
+    def hillCurve(self, color, a, b, c, accuracy):
+        self.color(color)
+        self.up()
+        self.goto(-self.ts.window_width()//2, self.parabola_point(a, b, c, -self.ts.window_width()//2))
+        self.down()
+        while self.xcor() - accuracy < self.ts.window_width()//2:
+            self.goto(self.xcor() + accuracy, self.parabola_point(a, b, c, self.xcor() + 2))
+
+    def parabola_point(self, a, b, c, x):
+        return math.ceil(a*x**2 + b*x + c)
+
+    def trees(self, num):
+        self.color("black")
+        for i in range(num):
+            self.up()
+            self.goto(random.randint(-self.ts.window_width()//2, self.ts.window_width()//2), random.randint(-self.ts.window_height()//2, self.ts.window_height()//2))
+            self.down()
+            for i in range(4):
+                self.fd(30)
+                self.lt(90)
+        
+
 s = Scenery()
-s.makeBg("#000000", 2, 2, "#000000", False, "#000000", False, True, "#fff5ec")
+s.makeFg(4, -.0005, 0, -100)
+s.ts.exitonclick()
 
