@@ -74,7 +74,7 @@ class Scenery(Turtle):
         """Calls FG/MG/BG for time/weather in Island"""
         if self.time == 1:
             if self.weather == 1:
-                pass
+                self.snow(200, 1, 2, "black")
             elif self.weather == 2:
                 pass
             elif self.weather == 3:
@@ -134,44 +134,57 @@ class Scenery(Turtle):
             elif self.weather == 4:
                 pass
 
-    def hills(self):  # TODO
+    def hills(self):
         """Calls FG/MG/BG for time/weather in Hills"""
         if self.time == 1:
             if self.weather == 1:
                 self.make_bg("#FFB169", 0, 0, "#FFFD7C", 3, "#C69189", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", True, "#77809D")
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", True, "#77809D", False, 1, 3,
+                             "#000000")
             elif self.weather == 2:
                 self.make_bg("#FFB169", 0, 0, "#FFFD7C", 0, "#FFFFFF", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black")
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black", False, 1, 3,
+                             "#000000")
             elif self.weather == 3:
                 self.make_bg("#FFB169", 0, 0, "#FFFD7C", 2, "#C69189", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black")
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black", False, 1, 3,
+                             "#000000")
             elif self.weather == 4:
-                pass
+                self.make_bg("#C2b7da", False, 0, "#FFFF00", 3, "#9AA2AE", False, False, "#000000")
+                self.make_fg(True, 10, "#C39E63", True, -.0005, 0, -100, "#B6C6D6", False, "blue", True, 1, 3, "White")
         elif self.time == 2:
             if self.weather == 1:
                 self.make_bg("#3f3f3f", 0, 2, "#FFFF00", 3, "#D3D3D3", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "green", True, "blue")
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "green", True, "blue", False, 1, 3, "#000000")
             elif self.weather == 2:
                 self.make_bg("#0000FF", 0, 2, "#FFFF00", 0, "#FFFFFF", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#00FF00", False, "black")
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#00FF00", False, "black", False, 1, 3,
+                             "#000000")
             elif self.weather == 3:
                 self.make_bg("#0000FF", 0, 1, "#FFFF00", 1, "#FFFFFF", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#00FF00", False, "black")
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#00FF00", False, "black", False, 1, 3,
+                             "#000000")
             elif self.weather == 4:
-                pass
+                self.make_bg("#82b7da", False, 2, "#FFFF00", 3, "#9AA2AE", False, False, "#000000")
+                self.make_fg(True, 10, "#C39E63", True, -.0005, 0, -100, "#B6C6D6", False, "blue", True, 1, 3,
+                             "#DBE3E7")
+
         elif self.time == 3:
             if self.weather == 1:
                 self.make_bg("#FFB169", 0, 1, "#FFFD7C", 3, "#C69189", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", True, "#77809D")
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", True, "#77809D", False, 1, 3,
+                             "#000000")
             elif self.weather == 2:
                 self.make_bg("#FFB169", 0, 1, "#FFFD7C", 0, "#FFFFFF", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black")
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black", False, 1, 3,
+                             "#000000")
             elif self.weather == 3:
                 self.make_bg("#FFB169", 0, 1, "#FFFD7C", 2, "#C69189", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black")
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black", False, 1, 3,
+                             "#000000")
             elif self.weather == 4:
-                pass
+                self.make_bg("#C2b7da", False, 1, "#FFFF00", 3, "#9AA2AE", False, False, "#000000")
+                self.make_fg(True, 10, "#C39E63", True, -.0005, 0, -100, "#B6C6D6", False, "blue", True, 1, 3, "White")
 
     def city(self):  # TODO
         """Calls FG/MG/BG for time/weather in City"""
@@ -239,7 +252,7 @@ class Scenery(Turtle):
         self.hill_curve(hcolor, a, b, c, 2)
         self.trees_on_hill(trees, a, b, c, tcolor)
 
-    def make_fg(self, trees, treenum, tcolor, hill, a, b, c, hcolor, rain, rcolor):
+    def make_fg(self, trees, treenum, tcolor, hill, a, b, c, hcolor, rain, rcolor, snow, min, max, scolor):
         """Generates Foreground"""
         if hill:
             self.hill_curve(hcolor, a, b, c, 2)
@@ -247,6 +260,8 @@ class Scenery(Turtle):
                 self.trees_on_hill(treenum, a, b, c, tcolor)
         if rain:
             self.rain(100, rcolor)
+        if snow:
+            self.snow(200, min, max, scolor)
 
     def birds(self, num):
         """Randomly populates birds in the top half of the screen"""
@@ -365,5 +380,16 @@ class Scenery(Turtle):
                 self.fd(30)
                 self.lt(90)
             self.end_fill()
+
+    def snow(self, num, min, max, color):
+        """Randomly populates snow"""
+        self.color(color)
+        for i in range(num):
+            x = random.randint(-self.ts.window_width() // 2, self.ts.window_width() // 2)
+            y = random.randint(-self.ts.window_height() // 2, self.ts.window_height() // 2)
+            self.up()
+            self.goto(x, y)
+            self.down()
+            self.dot(random.randint(min, max))
 
 s = Scenery()
