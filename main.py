@@ -1,5 +1,5 @@
 """
-Scenery Generator
+Scenery Generator: Generates Scenery using Turtle Graphice
 Copyright (C) 2016  Proof School Intermediate Python Class 2016-17
 
 This program is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ class Scenery(Turtle):
         self.weather = self.ts.numinput('Weather', '''What weather do you want? Your options are:
             → rainy = 1
             → sunny = 2
-            → foggy = 3
+            → cloudy = 3
             → snowy = 4
             → random = 5''', minval=1, maxval=5, default=2)
 
@@ -138,32 +138,38 @@ class Scenery(Turtle):
         """Calls FG/MG/BG for time/weather in Hills"""
         if self.time == 1:
             if self.weather == 1:
-                pass
+                self.make_bg("#FFB169", 0, 0, "#FFFD7C", 3, "#C69189", False, False, None)
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", True, "#77809D")
             elif self.weather == 2:
-                pass
+                self.make_bg("#FFB169", 0, 0, "#FFFD7C", 0, "#FFFFFF", False, False, None)
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black")
             elif self.weather == 3:
-                pass
+                self.make_bg("#FFB169", 0, 0, "#FFFD7C", 2, "#C69189", False, False, None)
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black")
             elif self.weather == 4:
                 pass
         elif self.time == 2:
             if self.weather == 1:
-                pass
+                self.make_bg("#3f3f3f", 0, 2, "#FFFF00", 3, "#D3D3D3", False, False, None)
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "green", True, "blue")
             elif self.weather == 2:
-                self.make_bg("#0000FF", 0, 1, "#FFFF00", 1, "#FFFFFF", False, False, None)
-                self.make_fg(10, -.0005, 0, -100, "#00FF00", "#964B00")
+                self.make_bg("#0000FF", 0, 2, "#FFFF00", 0, "#FFFFFF", False, False, None)
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#00FF00", False, "black")
             elif self.weather == 3:
-                pass
+                self.make_bg("#0000FF", 0, 1, "#FFFF00", 1, "#FFFFFF", False, False, None)
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#00FF00", False, "black")
             elif self.weather == 4:
-                pass
-            elif self.time == 3:
                 pass
         elif self.time == 3:
             if self.weather == 1:
-                pass
+                self.make_bg("#FFB169", 0, 1, "#FFFD7C", 3, "#C69189", False, False, None)
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", True, "#77809D")
             elif self.weather == 2:
-                pass
+                self.make_bg("#FFB169", 0, 1, "#FFFD7C", 0, "#FFFFFF", False, False, None)
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black")
             elif self.weather == 3:
-                pass
+                self.make_bg("#FFB169", 0, 1, "#FFFD7C", 2, "#C69189", False, False, None)
+                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black")
             elif self.weather == 4:
                 pass
 
@@ -207,9 +213,9 @@ class Scenery(Turtle):
             self.stars(30, starcolor)
 
         if sunpos == 1:
-            self.sun(suncolor)
+            self.sun(suncolor, 1)
         elif sunpos == 2:
-            self.sun(suncolor)
+            self.sun(suncolor, 2)
 
         if mountains:
             self.mountains(20, 100, 200, -50)
@@ -233,10 +239,14 @@ class Scenery(Turtle):
         self.hill_curve(hcolor, a, b, c, 2)
         self.trees_on_hill(trees, a, b, c, tcolor)
 
-    def make_fg(self, trees, a, b, c, hcolor, tcolor):
+    def make_fg(self, trees, treenum, tcolor, hill, a, b, c, hcolor, rain, rcolor):
         """Generates Foreground"""
-        self.hill_curve(hcolor, a, b, c, 2)
-        self.trees_on_hill(trees, a, b, c, tcolor)
+        if hill:
+            self.hill_curve(hcolor, a, b, c, 2)
+            if trees:
+                self.trees_on_hill(treenum, a, b, c, tcolor)
+        if rain:
+            self.rain(100, rcolor)
 
     def birds(self, num):
         """Randomly populates birds in the top half of the screen"""
@@ -253,13 +263,17 @@ class Scenery(Turtle):
                 self.lt(90)
             self.end_fill()
 
-    def sun(self, color):
+    def sun(self, color, pos):
         """Places the sun in one location"""
-        self.up()
-        self.goto(self.ts.window_width() // 2 - 100, self.ts.window_height() // 2 - 100)
-        self.color(color)
-        self.down()
-        self.dot(100)
+        if pos is not 0:
+            self.up()
+            if pos == 2:
+                self.goto(self.ts.window_width() // 2 - 100, self.ts.window_height() // 2 - 100)
+            elif pos == 1:
+                self.goto(0, -75)
+            self.color(color)
+            self.down()
+            self.dot(100)
 
     def clouds(self, color, num, sizemin, sizemax):
         """Randonly populates clouds on the top half of the window"""
@@ -300,11 +314,22 @@ class Scenery(Turtle):
         self.color(color)
         for i in range(num):
             self.up()
-            x = random.randint(-self.ts.window_width() // 2, self.ts.window_height() // 2)
+            x = random.randint(-self.ts.window_width() // 2, self.ts.window_width() // 2)
             y = random.randint(-self.ts.window_height() // 2, self.ts.window_height() // 2)
             self.goto(x, y)
             self.down()
             self.dot(random.randint(2, 10))
+
+    def rain(self, num, color):
+        """Randomly populates rain"""
+        self.color(color)
+        for i in range(num):
+            self.up()
+            x = random.randint(-self.ts.window_width() // 2, self.ts.window_width() // 2)
+            y = random.randint(-self.ts.window_height() // 2, self.ts.window_height() // 2)
+            self.goto(x, y)
+            self.down()
+            self.dot(random.randint(1, 5))
 
     def hill_curve(self, color, a, b, c, accuracy):
         """Draws a parabola, fills in space between parabola and bottom of window"""
