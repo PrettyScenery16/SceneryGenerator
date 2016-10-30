@@ -1,5 +1,5 @@
 """
-Scenery Generator: Generates Scenery using Turtle Graphice
+Scenery Generator: Generates Scenery using Turtle Graphics
 Copyright (C) 2016  Proof School Intermediate Python Class 2016-17
 
 This program is free software: you can redistribute it and/or modify
@@ -41,14 +41,14 @@ class Scenery(Turtle):
             → morning = 1
             → midday = 2
             → evening = 3
-            → random = 4''', minval=1, maxval=4, default=2)
+            → random = 4''', minval=1, maxval=4, default=4)
 
         self.weather = self.ts.numinput('Weather', '''What weather do you want? Your options are:
             → rainy = 1
             → sunny = 2
             → cloudy = 3
             → snowy = 4
-            → random = 5''', minval=1, maxval=5, default=2)
+            → random = 5''', minval=1, maxval=5, default=5)
 
         if self.weather == 5:
             self.weather = random.randint(1, 4)
