@@ -22,7 +22,9 @@ from turtle import *
 
 
 class Scenery(Turtle):
+    """Scenery Generator"""
     def __init__(self):
+        """Calls location functions, stops program at end"""
         Turtle.__init__(self)
         self.ts = self.getscreen()
         self.speed(0)
@@ -69,6 +71,7 @@ class Scenery(Turtle):
         self.ts.exitonclick()
 
     def island(self):  # TODO
+        """Calls FG/MG/BG for time/weather in Island"""
         if self.time == 1:
             if self.weather == 1:
                 pass
@@ -100,6 +103,7 @@ class Scenery(Turtle):
                 pass
 
     def valley(self):  # TODO
+        """Calls FG/MG/BG for time/weather in Valley"""
         if self.time == 1:
             if self.weather == 1:
                 pass
@@ -131,6 +135,7 @@ class Scenery(Turtle):
                 pass
 
     def hills(self):  # TODO
+        """Calls FG/MG/BG for time/weather in Hills"""
         if self.time == 1:
             if self.weather == 1:
                 pass
@@ -163,6 +168,7 @@ class Scenery(Turtle):
                 pass
 
     def city(self):  # TODO
+        """Calls FG/MG/BG for time/weather in City"""
         if self.time == 1:
             if self.weather == 1:
                 pass
@@ -194,7 +200,7 @@ class Scenery(Turtle):
                 pass
 
     def make_bg(self, color, birds, sunpos, suncolor, clouds, cloudcolor, mountains, stars, starcolor):
-
+        """Generates background"""
         self.ts.bgcolor(color)
 
         if stars:
@@ -223,14 +229,17 @@ class Scenery(Turtle):
             self.birds(50)
 
     def make_mg(self, trees, a, b, c, hcolor, tcolor):
+        """Generates Middleground"""
         self.hill_curve(hcolor, a, b, c, 2)
         self.trees_on_hill(trees, a, b, c, tcolor)
 
     def make_fg(self, trees, a, b, c, hcolor, tcolor):
+        """Generates Foreground"""
         self.hill_curve(hcolor, a, b, c, 2)
         self.trees_on_hill(trees, a, b, c, tcolor)
 
     def birds(self, num):
+        """Randomly populates birds in the top half of the screen"""
         self.color("black")
         for i in range(num):
             self.up()
@@ -245,6 +254,7 @@ class Scenery(Turtle):
             self.end_fill()
 
     def sun(self, color):
+        """Places the sun in one location"""
         self.up()
         self.goto(self.ts.window_width() // 2 - 100, self.ts.window_height() // 2 - 100)
         self.color(color)
@@ -252,6 +262,7 @@ class Scenery(Turtle):
         self.dot(100)
 
     def clouds(self, color, num, sizemin, sizemax):
+        """Randonly populates clouds on the top half of the window"""
         self.color(color)
         if sizemin > 20:
             for i in range(num):
@@ -271,6 +282,7 @@ class Scenery(Turtle):
                 self.end_fill()
 
     def mountains(self, num, sizemin, sizemax, y):
+        """Randomly populates mountains on a given line in y = a form"""
         self.color("black")
         for i in range(num):
             x = random.randint(sizemin, sizemax)
@@ -284,6 +296,7 @@ class Scenery(Turtle):
             self.rt(135)
 
     def stars(self, num, color):
+        """Randomly populates stars"""
         self.color(color)
         for i in range(num):
             self.up()
@@ -294,6 +307,7 @@ class Scenery(Turtle):
             self.dot(random.randint(2, 10))
 
     def hill_curve(self, color, a, b, c, accuracy):
+        """Draws a parabola, fills in space between parabola and bottom of window"""
         self.color(color)
         self.up()
         self.goto(-self.ts.window_width()//2, self.parabola_point(a, b, c, -self.ts.window_width()//2))
@@ -309,13 +323,15 @@ class Scenery(Turtle):
 
     @staticmethod
     def parabola_point(a, b, c, x):
-        return math.ceil(a * c ** 2 + b * x + c)
+        """Finds points on a parabola for self.hill_curve()"""
+        return math.ceil(a * x ** 2 + b * x + c)
 
     def trees_on_hill(self, num, a, b, c, color):
+        """Draws trees below parabola y = ax^2+bx+c"""
         self.color(color)
         for i in range(num):
             self.up()
-            x = random.randint(-self.ts.window_width() // 2, self.ts.window_width() // 2 - 30)
+            x = random.randint(-self.ts.window_width() // 2 + 30, self.ts.window_width() // 2 - 30)
             y = random.randint(-self.ts.window_height() // 2 + 30, self.parabola_point(a, b, c, x))
             self.goto(x, y)
             self.down()
