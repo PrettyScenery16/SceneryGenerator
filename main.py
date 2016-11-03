@@ -238,7 +238,7 @@ class Scenery(Turtle):
         elif clouds == 2:
             self.clouds(cloudcolor, 10, 50, 100)
         elif clouds == 3:
-            self.clouds(cloudcolor, 20, 50, 100)
+            self.clouds(cloudcolor, 40, 50, 100)
 
         if birds == 1:
             self.birds(10)
@@ -252,7 +252,7 @@ class Scenery(Turtle):
         self.hill_curve(hcolor, a, b, c, 2)
         self.trees_on_hill(trees, a, b, c, tcolor)
 
-    def make_fg(self, trees, treenum, tcolor, hill, a, b, c, hcolor, rain, rcolor, snow, min, max, scolor):
+    def make_fg(self, trees, treenum, tcolor, hill, a, b, c, hcolor, rain, rcolor, snow, mins, maxs, scolor):
         """Generates Foreground"""
         if hill:
             self.hill_curve(hcolor, a, b, c, 2)
@@ -261,9 +261,9 @@ class Scenery(Turtle):
         if rain:
             self.rain(100, rcolor)
         if snow:
-            self.snow(200, min, max, scolor)
+            self.snow(200, mins, maxs, scolor)
 
-    def birds(self, num):
+    def birds(self, num):  # TODO actual bird shape, spacing/formations?
         """Randomly populates birds in the top half of the screen"""
         self.color("black")
         for i in range(num):
@@ -278,7 +278,7 @@ class Scenery(Turtle):
                 self.lt(90)
             self.end_fill()
 
-    def sun(self, color, pos):
+    def sun(self, color, pos):  # TODO positioning
         """Places the sun in one location"""
         if pos is not 0:
             self.up()
@@ -290,7 +290,7 @@ class Scenery(Turtle):
             self.down()
             self.dot(100)
 
-    def clouds(self, color, num, sizemin, sizemax):
+    def clouds(self, color, num, sizemin, sizemax):  # TODO cloud shapes, spacing?
         """Randonly populates clouds on the top half of the window"""
         self.color(color)
         if sizemin > 20:
@@ -310,7 +310,7 @@ class Scenery(Turtle):
                     self.lt(90)
                 self.end_fill()
 
-    def mountains(self, num, sizemin, sizemax, y):
+    def mountains(self, num, sizemin, sizemax, y):  # TODO filling, bottoms, spacing
         """Randomly populates mountains on a given line in y = a form"""
         self.color("black")
         for i in range(num):
@@ -335,7 +335,7 @@ class Scenery(Turtle):
             self.down()
             self.dot(random.randint(2, 10))
 
-    def rain(self, num, color):
+    def rain(self, num, color):  # TODO shapes? sizes? color?
         """Randomly populates rain"""
         self.color(color)
         for i in range(num):
@@ -346,7 +346,7 @@ class Scenery(Turtle):
             self.down()
             self.dot(random.randint(1, 5))
 
-    def hill_curve(self, color, a, b, c, accuracy):
+    def hill_curve(self, color, a, b, c, accuracy):  # TODO smoothing, more hills?
         """Draws a parabola, fills in space between parabola and bottom of window"""
         self.color(color)
         self.up()
@@ -366,7 +366,7 @@ class Scenery(Turtle):
         """Finds points on a parabola for self.hill_curve()"""
         return math.ceil(a * x ** 2 + b * x + c)
 
-    def trees_on_hill(self, num, a, b, c, color):
+    def trees_on_hill(self, num, a, b, c, color):  # TODO tree shapes, spacing?
         """Draws trees below parabola y = ax^2+bx+c"""
         self.color(color)
         for i in range(num):
@@ -381,7 +381,7 @@ class Scenery(Turtle):
                 self.lt(90)
             self.end_fill()
 
-    def snow(self, num, min, max, color):
+    def snow(self, num, mins, maxs, color):  # TODO shape?
         """Randomly populates snow"""
         self.color(color)
         for i in range(num):
@@ -390,6 +390,6 @@ class Scenery(Turtle):
             self.up()
             self.goto(x, y)
             self.down()
-            self.dot(random.randint(min, max))
+            self.dot(random.randint(mins, maxs))
 
 s = Scenery()
