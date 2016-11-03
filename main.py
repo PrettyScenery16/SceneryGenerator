@@ -74,7 +74,7 @@ class Scenery(Turtle):
         """Calls FG/MG/BG for time/weather in Island"""
         if self.time == 1:
             if self.weather == 1:
-                self.snow(200, 1, 2, "black")
+                pass
             elif self.weather == 2:
                 pass
             elif self.weather == 3:
