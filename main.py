@@ -238,7 +238,7 @@ class Scenery(Turtle):
         elif clouds == 2:
             self.clouds(cloudcolor, 10, 50, 100)
         elif clouds == 3:
-            self.clouds(cloudcolor, 20, 50, 100)
+            self.clouds(cloudcolor, 15, 50, 100)
 
         if birds == 1:
             self.birds(10)
