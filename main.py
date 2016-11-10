@@ -374,11 +374,7 @@ class Scenery(Turtle):
             y = random.randint(-self.ts.window_height() // 2 + 30, self.parabola_point(a, b, c, x))
             self.goto(x, y)
             self.down()
-            self.begin_fill()
-            for j in range(4):
-                self.fd(30)
-                self.lt(90)
-            self.end_fill()
+            self.treedraw()
 
     def snow(self, num, mins, maxs, color):  # TODO shape?
         """Randomly populates snow"""
@@ -394,5 +390,47 @@ class Scenery(Turtle):
         shape("circle")
         shapesize(5,4,1)
         fillcolor("white")
-
+        
+    def treedraw(self, sidelength, levels):
+        branches = random.choice([1,1,1,1,1,2,2])
+        angle = random.randint(1,5)
+        sidelength = random.randint(50,125)
+        self.pensize((levels+2)-levels/levels)
+        # self.color()
+        if (levels == 1):
+            self.forward(sidelength)
+            self.backward(sidelength)
+        elif (levels == 2):
+            branchangle = random.randint(10,30)
+            self.forward(sidelength)
+            self.left(branchangle)
+            self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+            self.right(branchangle)
+            self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+            self.right(branchangle)
+            self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+            self.left(branchangle)
+            self.backward(sidelength)
+        else:
+            if branches == 1:
+                branchangle = random.randint(15,30)
+                self.forward(sidelength)
+                self.left(branchangle)
+                self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+                self.right(branchangle*2)
+                self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+                self.left(branchangle)
+                self.backward(sidelength)
+            else:
+                branchangle = random.randint(10,30)
+                self.forward(sidelength)
+                self.left(branchangle)
+                self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+                self.right(branchangle)
+                self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+                self.right(branchangle)
+                self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+                self.left(branchangle)
+                self.backward(sidelength)
+            self.end_fill()
 s = Scenery()
