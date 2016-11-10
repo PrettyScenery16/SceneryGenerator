@@ -296,18 +296,17 @@ class Scenery(Turtle):
         if sizemin > 20:
             for i in range(num):
                 self.up()
-                x = random.randint(-self.ts.window_height() // 2, (self.ts.window_height() - sizemax) // 2)
-                y = random.randint(0, (self.ts.window_height() - sizemin - 20) // 2)
+                x = random.randint(-self.ts.window_height() // 2, (self.ts.window_height() - 3 * sizemax) // 2)
+                y = random.randint(0, (self.ts.window_height() - sizemax) // 2)
                 self.goto(x, y)
                 self.down()
                 self.begin_fill()
-                x1 = random.randint(sizemin, sizemax)
-                y1 = random.randint(sizemin - 20, sizemax - 20)
-                for j in range(2):
-                    self.fd(x1)
-                    self.lt(90)
-                    self.fd(y1)
-                    self.lt(90)
+                thex = self.xcor()
+                they = self.ycor()
+                for i in range(2):
+                    self.dot(random.randint(sizemin, sizemax))
+                    self.fd(random.randint(sizemin // 2, sizemax // 2))
+                self.circle(random.randint(sizemin, sizemax))
                 self.end_fill()
 
     def mountains(self, num, sizemin, sizemax, y):  # TODO filling, bottoms, spacing
