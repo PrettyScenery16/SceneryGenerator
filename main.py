@@ -379,6 +379,39 @@ class Scenery(Turtle):
                 self.fd(30)
                 self.lt(90)
             self.end_fill()
+    
+    def tree(levels,sidelength,shrink,branch):
+        width(sidelength/6)
+        if levels==0:
+            color(34, 139, 34)
+            fd(sidelength)
+            bk(sidelength)
+            color(139, 69, 19)
+        elif levels==1:
+            color(34, 139, 34)
+            fd(sidelength)
+            lt(branch)
+            tree(0,sidelength*shrink,shrink,2*branch/3+2*branch*random()/3)
+            rt(2*branch)
+            tree(0,sidelength*shrink,shrink,2*branch/3+2*branch*random()/3)
+            lt(branch)
+            bk(sidelength)
+            color(139, 69, 19)
+        else:
+            if levels == 3:
+                color(34, 139, 34)
+            else:   
+                color(139,69, 19)
+            color(139, 69, 19)
+            fd(sidelength)
+            lt(branch)
+            drop=randint(1,2)
+            tree(levels-drop,sidelength*(shrink**drop),shrink,2*branch/3+2*branch*random()/3)
+            rt(2*branch)
+            drop=randint(1,2)
+            tree(levels-drop,sidelength*(shrink**drop),shrink,2*branch/3+2*branch*random()/3)
+            lt(branch)
+            bk(sidelength)  
 
     def snow(self, num, mins, maxs, color):  # TODO shape?
         """Randomly populates snow"""
