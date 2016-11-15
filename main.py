@@ -392,8 +392,8 @@ class Scenery(Turtle):
             self.dot(random.randint(mins, maxs))
     def ellipse(self):
         t.shape('circle')
-    t.shapesize(5,4,1)
-    fillcolor("white")
-    t.shape('turtle')
+        t.shapesize(5,4,1)
+        fillcolor("white")
+        t.shape('turtle')
 
 s = Scenery()
