@@ -27,7 +27,8 @@ class Scenery(Turtle):
         """Calls location functions, stops program at end"""
         Turtle.__init__(self)
         self.ts = self.getscreen()
-        self.speed(0)
+        self.ts.colormode(255)
+        self.ts.tracer(1000)
         self.ht()
 
         self.place = self.ts.numinput('Place', '''What place do you want? Your options are:
@@ -68,6 +69,7 @@ class Scenery(Turtle):
         elif self.place == 4:
             self.city()
 
+        self.ts.update()
         self.ts.exitonclick()
 
     def island(self):  # TODO
@@ -139,15 +141,15 @@ class Scenery(Turtle):
         if self.time == 1:
             if self.weather == 1:
                 self.make_bg("#FFB169", 0, 0, "#FFFD7C", 3, "#C69189", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", True, "#77809D", False, 1, 3,
+                self.make_fg(True, 10, "#228B22", True, -.0005, 0, -100, "#008800", True, "#77809D", False, 1, 3,
                              "#000000")
             elif self.weather == 2:
                 self.make_bg("#FFB169", 0, 0, "#FFFD7C", 0, "#FFFFFF", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black", False, 1, 3,
+                self.make_fg(True, 10, "#228B22", True, -.0005, 0, -100, "#008800", False, "black", False, 1, 3,
                              "#000000")
             elif self.weather == 3:
                 self.make_bg("#FFB169", 0, 0, "#FFFD7C", 2, "#C69189", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#008800", False, "black", False, 1, 3,
+                self.make_fg(True, 10, "#228B22", True, -.0005, 0, -100, "#008800", False, "black", False, 1, 3,
                              "#000000")
             elif self.weather == 4:
                 self.make_bg("#C2b7da", False, 0, "#FFFF00", 3, "#9AA2AE", False, False, "#000000")
@@ -155,14 +157,14 @@ class Scenery(Turtle):
         elif self.time == 2:
             if self.weather == 1:
                 self.make_bg("#3f3f3f", 0, 2, "#FFFF00", 3, "#D3D3D3", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "green", True, "blue", False, 1, 3, "#000000")
+                self.make_fg(True, 10, "#228B22", True, -.0005, 0, -100, "green", True, "blue", False, 1, 3, "#000000")
             elif self.weather == 2:
                 self.make_bg("#0000FF", 0, 2, "#FFFF00", 0, "#FFFFFF", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#00FF00", False, "black", False, 1, 3,
+                self.make_fg(True, 10, "#228B22", True, -.0005, 0, -100, "#00FF00", False, "black", False, 1, 3,
                              "#000000")
             elif self.weather == 3:
                 self.make_bg("#0000FF", 0, 1, "#FFFF00", 1, "#FFFFFF", False, False, None)
-                self.make_fg(True, 10, "#964B00", True, -.0005, 0, -100, "#00FF00", False, "black", False, 1, 3,
+                self.make_fg(True, 10, "#228B22", True, -.0005, 0, -100, "#00FF00", False, "black", False, 1, 3,
                              "#000000")
             elif self.weather == 4:
                 self.make_bg("#82b7da", False, 2, "#FFFF00", 3, "#9AA2AE", False, False, "#000000")
@@ -374,11 +376,42 @@ class Scenery(Turtle):
             y = random.randint(-self.ts.window_height() // 2 + 30, self.parabola_point(a, b, c, x))
             self.goto(x, y)
             self.down()
-            self.begin_fill()
-            for j in range(4):
-                self.fd(30)
-                self.lt(90)
-            self.end_fill()
+            self.setheading(90)
+            self.tree(7, 30, 5/6, 24, color)
+
+    def tree(self, levels, sidelength, shrink, branch, colors):
+        self.width(sidelength/6)
+        if levels == 0:
+            self.color("#228B22")
+            self.dot(5)
+            self.fd(sidelength)
+            self.bk(sidelength)
+            self.color(139, 69, 19)
+        elif levels == 1:
+            self.color("#228B22")
+            self.fd(sidelength)
+            self.lt(branch)
+            self.tree(0,sidelength*shrink,shrink,2*branch/3+2*branch*random.random()/3, "#228B22")
+            self.rt(2*branch)
+            self.tree(0,sidelength*shrink,shrink,2*branch/3+2*branch*random.random()/3, "#228B22")
+            self.lt(branch)
+            self.bk(sidelength)
+            self.color(139, 69, 19)
+        else:
+            if levels == 2:
+                self.color("#228B22")
+            else:
+                self.color(139,69, 19)
+            self.color(139, 69, 19)
+            self.fd(sidelength)
+            self.lt(branch)
+            drop = random.randint(1,2)
+            self.tree(levels-drop,sidelength*(shrink**drop),shrink,2*branch/3+2*branch*random.random()/3, "#228B22")
+            self.rt(2*branch)
+            drop = random.randint(1,2)
+            self.tree(levels-drop,sidelength*(shrink**drop),shrink,2*branch/3+2*branch*random.random()/3, "#228B22")
+            self.lt(branch)
+            self.bk(sidelength)
 
     def snow(self, num, mins, maxs, color):  # TODO shape?
         """Randomly populates snow"""
@@ -391,9 +424,9 @@ class Scenery(Turtle):
             self.down()
             self.dot(random.randint(mins, maxs))
     def ellipse(self):
-        self.shape('circle')
-        self.shapesize(5,4,1)
+        t.shape('circle')
+        t.shapesize(5,4,1)
         fillcolor("white")
-        self.shape('turtle')
+        t.shape('turtle')
 
 s = Scenery()
