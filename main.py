@@ -379,7 +379,47 @@ class Scenery(Turtle):
                 self.fd(30)
                 self.lt(90)
             self.end_fill()
-
+    def tree(self, levels, sidelength,red,green,blue):
+        self.pencolor(139, 69, 19)
+        branches = random.choice([1,1,1,1,1,2,2])
+        angle = random.randint(1,5)
+        sidelength = random.randint(10,20)
+        self.pensize((levels+2)-levels/levels)
+        if (levels == 1):
+            self.forward(sidelength)
+            self.backward(sidelength)
+        elif (levels == 2):
+            branchangle = random.randint(10,30)
+            self.forward(sidelength)
+            self.left(branchangle)
+            self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+            self.right(branchangle)
+            self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+            self.right(branchangle)
+            self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+            self.left(branchangle)
+            self.backward(sidelength)
+        else:
+            if branches == 1:
+                branchangle = random.randint(15,30)
+                self.forward(sidelength)
+                self.left(branchangle)
+                self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+                self.right(branchangle*2)
+                self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+                self.left(branchangle)
+                self.backward(sidelength)
+            else:
+                branchangle = random.randint(10,30)
+                self.forward(sidelength)
+                self.left(branchangle)
+                self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+                self.right(branchangle)
+                self.tree(levels-branches, angle*sidelength/random.randint(angle,angle+5))
+                self.right(branchangle)
+                self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+                self.left(branchangle)
+                self.backward(sidelength)
     def snow(self, num, mins, maxs, color):  # TODO shape?
         """Randomly populates snow"""
         self.color(color)
