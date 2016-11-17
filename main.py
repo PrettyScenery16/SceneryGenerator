@@ -343,8 +343,35 @@ class Scenery(Turtle):
             y = random.randint(-self.ts.window_height() // 2, self.ts.window_height() // 2)
             self.goto(x, y)
             self.down()
-            self.dot(random.randint(1, 5))
-
+            self.dot(random.randint(1, 5)
+    def one_layer_pine_tree(self, stump, leaves'''Stump and leaves are lists like this: [red, greeen, blue] ''', weather):
+        self.pencolor(stump[0],stump[1],stump[2]) ##############NEW CODE################
+        height = random.randint(35, 100)
+        width = random.randint(20,40)
+        self.setheading(90)
+        for j in range(2):
+            self.fd(height)
+            self.lt(90)
+            self.fd(width)
+            self.lt(90)
+        if weather == snowy:
+            #TODO
+        else:
+            angle = random.randint(50, 80)
+            basewidth = random.randint(2*width+10, 3*width)
+            self.forward(height)
+            self.lt(90)
+            self.forward(width/2)
+            self.pencolor(leaves[0], leaves[1], leaves[2])
+            self.forward(basewidth/2)
+            self.right(180-angle)
+            hyp = (basewidth/2)/cos(angle)
+            self.forward(hyp)
+            self.right(180-2*angle)
+            self.forward(hyp)
+            self.left(180+angle)
+            self.forward(basewidth/2)
+            self.end_fill()
     def hill_curve(self, color, a, b, c, accuracy):  # TODO smoothing, more hills?
         """Draws a parabola, fills in space between parabola and bottom of window"""
         self.color(color)
@@ -380,6 +407,7 @@ class Scenery(Turtle):
                 self.lt(90)
             self.end_fill()
     def tree(self, levels, sidelength,red,green,blue):
+        '''Draws a tree'''
         self.pencolor(139, 69, 19)
         branches = random.choice([1,1,1,1,1,2,2])
         angle = random.randint(1,5)
@@ -413,7 +441,7 @@ class Scenery(Turtle):
                 branchangle = random.randint(10,30)
                 self.forward(sidelength)
                 self.left(branchangle)
-                self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))
+                self.tree(levels-1, angle*sidelength/random.randint(angle,angle+5))hi
                 self.right(branchangle)
                 self.tree(levels-branches, angle*sidelength/random.randint(angle,angle+5))
                 self.right(branchangle)
@@ -432,8 +460,8 @@ class Scenery(Turtle):
             self.dot(random.randint(mins, maxs))
     def ellipse(self):
         t.shape('circle')
-    t.shapesize(5,4,1)
-    fillcolor("white")
-    t.shape('turtle')
+        t.shapesize(5,4,1)
+        fillcolor("white")
+        t.shape('turtle')
 
 s = Scenery()
